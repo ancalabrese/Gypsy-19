@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Helmet } from 'react-helmet';
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>Gypsy-19</title>
+      {/* G Chart script */}
+    </Helmet>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode >,
   document.getElementById('root')
 );
 

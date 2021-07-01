@@ -7,9 +7,9 @@ import ControlPanel from './Components/ControlsPanel/ControlPanel';
 function App() {
   return (
     <div className="App">
-      <WorldMap />
-      <ControlPanel />  
-      {/* <header className="App-header">
+        <WorldMap />
+        <ControlPanel />
+        {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
