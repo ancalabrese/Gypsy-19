@@ -1,0 +1,22 @@
+
+$primary:           #fffafe;
+$primary-dark:      #ccc7cb;
+$primary-light:     #ffffff;
+$secondary:         #ff9293;
+$secondary-dark:    #c96265;
+$secondary-light:   #ffc4c3;
+$accent:            #3f2f70;
+$body-bg:           #fff;
+
+
+$theme-colors:(
+"primary":           $primary,
+"primary-dark":      $primary-dark,
+"primary-light":     $primary-light,
+"secondary":         $secondary,
+"secondary-dark":    $secondary-dark,
+"secondary-light":   $secondary-light,
+"accent":            $accent
+)!default;
+
+@import "~bootstrap/scss/bootstrap";
