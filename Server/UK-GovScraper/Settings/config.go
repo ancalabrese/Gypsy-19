@@ -21,17 +21,14 @@ type Configurations struct {
 	}
 }
 
-func Create() *Configurations {
-	return &Configurations{};
-}
-
-func (c *Configurations) Load(filename string) error {
-	c.Global.logger.Info("Loading Config", "config", filename)
+func Load(filename string, logger hclog.Logger) (*Configurations, error) {
+	logger.Info("Loading config file", "config", filename)
 	data, err := ioutil.ReadFile(filename)
 	if err != nil {
-		c.Global.logger.Error("Cannot load config file"+filename, "error", err)
-		return err
+		logger.Error("Cannot load config file"+filename, "error", err)
+		return nil,err
 	}
+	c := &Configurations{}
 	yaml.Unmarshal(data, c)
-	return nil
+	return c, nil;
 }
