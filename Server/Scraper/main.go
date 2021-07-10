@@ -7,7 +7,7 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/ancalabrese/Gypsy-19/Server/UK-GovScraper/Settings"
+	"github.com/ancalabrese/Gypsy-19/Server/Scraper/Settings"
 	"github.com/hashicorp/go-hclog"
 )
 

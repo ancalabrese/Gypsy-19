@@ -1,4 +1,4 @@
-module github.com/ancalabrese/Gypsy-19/Server/UK-GovScraper
+module github.com/ancalabrese/Gypsy-19/Server/Scraper
 
 go 1.16
 
