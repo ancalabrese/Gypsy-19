@@ -7,7 +7,7 @@ import (
 	"os/signal"
 	"time"
 
-	settings "github.com/ancalabrese/Gypsy-19/Server/UK-GovScraper/Settings"
+	"github.com/ancalabrese/Gypsy-19/Server/UK-GovScraper/Settings"
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -17,7 +17,8 @@ func main() {
 		Level: hclog.Debug,
 	})
 	//Load service config
-	conf, err := settings.Load("config.yml", l)
+	conf, err :=  Settings.Load("config.yml", l)
+
 	if err != nil {
 		l.Error("Cannot start server quitting.")
 		os.Exit(1)

@@ -13,12 +13,12 @@ type Configurations struct {
 		RedListSelector   string `yaml:"red-selector"`
 		AmberListSelector string `yaml:"amber-selector"`
 		GreenListSelector string `yaml:"green-selector"`
-	} `yaml:"scraper"`
+	} `yaml:"Scraper"`
 
 	Global struct {
 		LogLevel string       `yaml:"log-level"`
 		logger   hclog.Logger `yaml:"-"`
-	}
+	}`yaml:"Global"`
 }
 
 func Load(filename string, logger hclog.Logger) (*Configurations, error) {
