@@ -1,26 +1,26 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+/Web/node_modules
+/Web//.pnp
+/Web/.pnp.js
 
 # API Keys
-/.env
+/Web/.env
 
 # testing
-/coverage
+/Web/coverage
 
 # production
-/build
+/Web/build
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+/Web/.DS_Store
+/Web/.env.local
+/Web/.env.development.local
+/Web/.env.test.local
+/Web/.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+/Web/npm-debug.log*
+/Web/yarn-debug.log*
+/Web/yarn-error.log*

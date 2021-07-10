@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import Style from "./Toolbar.module.css"
-import context from 'react-bootstrap/esm/AccordionContext'
-// import Navigation from "../Navigation/Navigation/Navigation"
 
 const Toolbar = (props) => {
     const [showShadow, displayShadow] =  useState(props.fixedShadow);
@@ -56,7 +53,7 @@ const Toolbar = (props) => {
 
 Toolbar.propTypes = {
     fixedShadow: PropTypes.bool,
-    navigationItems: PropTypes.array
+    navigationItems: PropTypes.arrayOf(Nav.Link)
 };
 
 Toolbar.defaultProps = {

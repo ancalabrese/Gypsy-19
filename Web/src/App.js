@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import Toolbar from './Components/UI/Toolbar/Toolbar'
 import WorldMap from './Components/WorldMap/WorldMap';
 import ControlPanel from './Components/ControlsPanel/ControlPanel';
+import { Card } from 'react-bootstrap';
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
             <ControlPanel />
           </Col>
           <Col md={9} className={["align-items-center"].join(" ")}>
-            <WorldMap />
+            <Card>
+              <Card.Body><WorldMap /></Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>

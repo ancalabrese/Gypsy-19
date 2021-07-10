@@ -1,0 +1,9 @@
+Global:
+  log-level: 'debug'
+#server configuration
+Scraper:
+  service-name: 'product-api'
+  url: "https://www.gov.uk/guidance/red-amber-and-green-list-rules-for-entering-england"
+  red-selector: ""
+  amber-selector: ""
+  green-selector: ""

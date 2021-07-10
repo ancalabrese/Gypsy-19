@@ -23,9 +23,7 @@ const WorldMap = (props) => {
     }
 
     return (
-        <div id="map-container" className="min-vh-100">
-            Map placeholder
-        </div>
+        <div id="map-container" className="min-vh-100" />
     )
 }
 
