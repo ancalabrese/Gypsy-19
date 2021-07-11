@@ -4,6 +4,8 @@ Global:
 Scraper:
   service-name: 'UK.GOV-Scraper'
   url: "https://www.gov.uk/guidance/red-amber-and-green-list-rules-for-entering-england"
-  red-selector: ""
-  amber-selector: ""
-  green-selector: ""
+  html-selectors: 
+    red: "#red-list ~ table > tbody > tr > th"
+    amber: "#amber-list ~ table > tbody > tr > th"
+    green: "#green-list ~ table > tbody > tr > th"
+

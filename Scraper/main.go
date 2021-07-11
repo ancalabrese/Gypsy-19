@@ -7,7 +7,8 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/ancalabrese/Gypsy-19/Server/Scraper/Settings"
+	"github.com/ancalabrese/Gypsy-19/Scraper/Handler"
+	"github.com/ancalabrese/Gypsy-19/Scraper/Settings"
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -17,7 +18,7 @@ func main() {
 		Level: hclog.Debug,
 	})
 	//Load service config
-	conf, err :=  Settings.Load("config.yml", l)
+	conf, err := Settings.Load("config.yml", l)
 
 	if err != nil {
 		l.Error("Cannot start server quitting.")
@@ -26,6 +27,8 @@ func main() {
 
 	go func() {
 		l.Info("Starting server instance", "Name", conf.Scraper.ServerName, "URL", conf.Scraper.Url)
+		s:=Handler.CreateScraper(conf,l)
+		s.RetrieveLists()
 	}()
 
 	signChannel := make(chan os.Signal)
