@@ -7,6 +7,7 @@
 
 # API Keys
 /Web/.env
+/Scraper/local.env
 
 # testing
 /Web/coverage
