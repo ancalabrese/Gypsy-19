@@ -14,7 +14,7 @@ import (
 func CreateScraper(config *Settings.Configurations, l hclog.Logger) *Scraper {
 	s := &Scraper{
 		url:         config.Scraper.Url,
-		selector:    config.Scraper.HtmlListSelector,
+		selectors:    config.Scraper.HtmlListSelectors,
 		TravelLists: Country.Lists{},
 		logger:      l,
 	}
@@ -57,21 +57,22 @@ func (p *Scraper) extractCuntryLists(body io.Reader) error {
 		p.logger.Error("Error loading HTTP page", "Error", err)
 		return err
 	}
-
-	var countries []Country.Country
-	doc.Find(p.selector).Each(func(i int, s *goquery.Selection) {
-		countries = append(countries, Country.Country{
-			Name: s.Text(),
+	//TODO: clean up countries i.e. entries like (Portugal including islands)
+	for list, s := range p.selectors {
+		var countries []Country.Country
+		doc.Find(s).Each(func(i int, s *goquery.Selection) {
+			countries = append(countries, Country.Country{
+				Name: s.Text(),
+			})
 		})
-	})
-
-	// switch list {
-	// case "red":
-	// 	p.TravelLists.Red = countries
-	// case "amber":
-	// 	p.TravelLists.Amber = countries
-	// case "green":
-	// 	p.TravelLists.Green = countries
-	// }
+		switch list {
+		case "red":
+			p.TravelLists.Red = countries
+		case "amber":
+			p.TravelLists.Amber = countries
+		case "green":
+			p.TravelLists.Green = countries
+		}
+	}
 	return nil
 }

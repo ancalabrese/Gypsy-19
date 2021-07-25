@@ -13,7 +13,7 @@ type Configurations struct {
 	Scraper struct {
 		ServerName       string `yaml:"service-name"`
 		Url              string `yaml:"url"`
-		HtmlListSelector string `yaml:"html-selector"`
+		HtmlListSelectors map[string]string `yaml:"html-selectors"`
 	} `yaml:"scraper"`
 
 	Global struct {

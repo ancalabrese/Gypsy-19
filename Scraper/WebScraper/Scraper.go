@@ -8,7 +8,7 @@ import (
 
 type Scraper struct {
 	url         string
-	selector    string
+	selectors   map[string]string
 	TravelLists Country.Lists
 	logger      hclog.Logger
 }
