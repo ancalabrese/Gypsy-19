@@ -1,13 +1,11 @@
-Global:
+global:
   log-level: 'debug'
-#server configuration
-Scraper:
+
+#Scraper configuration
+scraper:
   service-name: 'UK.GOV-Scraper'
   url: "https://www.gov.uk/guidance/red-amber-and-green-list-rules-for-entering-england"
-  html-selectors: 
-    red: "#red-list ~ table > tbody > tr > th"
-    amber: "#amber-list ~ table > tbody > tr > th"
-    green: "#green-list ~ table > tbody > tr > th"
+  html-selector: "#contents > div.gem-c-govspeak.govuk-govspeak > div > table"
 
 #GitHub config
 github: 
@@ -19,6 +17,16 @@ github:
   committer-info:
     name: Gypsy19
     email: antoniobust@gmail.com 
-    branch: master
+    branch: dev
 
-
+#Microservice config 
+server:
+  name: 'travel-list'
+  url: "localhost"
+  port: "9091"
+  api-base-path: "/api"
+  cors-allowed-origins: "*"
+  api-routes: ["/update"]
+  idle-timeout: 120
+  read-timeout: 1
+  write-timeout: 1

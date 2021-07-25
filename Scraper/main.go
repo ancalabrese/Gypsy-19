@@ -3,16 +3,20 @@ package main
 import (
 	// "fmt"
 	"context"
+	"net/http"
 	"os"
 	"os/signal"
 	"time"
 
-	"github.com/ancalabrese/Gypsy-19/Scraper/Data"
+	"github.com/ancalabrese/Gypsy-19/Scraper/DB/GitHubClient"
 	"github.com/ancalabrese/Gypsy-19/Scraper/Handler"
+	"github.com/ancalabrese/Gypsy-19/Scraper/Middleware"
 	"github.com/ancalabrese/Gypsy-19/Scraper/Settings"
+	"github.com/ancalabrese/Gypsy-19/Scraper/WebScraper"
+	gorillaHandlers "github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 	"github.com/hashicorp/go-hclog"
 	"github.com/spf13/viper"
-	"golang.org/x/oauth2"
 )
 
 func main() {
@@ -33,20 +37,38 @@ func main() {
 		os.Exit(1)
 	}
 
+	ghConnector := GitHubClient.NewGitHubConnector(l, &conf.Connector.CommitterInfo, &conf.Connector.Repo)
+	webScraper := WebScraper.CreateScraper(conf, l)
+	tlUpdateHandler := Handler.NewTravelListUpdateHandler(l, ghConnector, conf, *webScraper)
+	//main API router
+	r := mux.NewRouter()
+	middlewareLogger := middleware.NewLogger(l)
+	r.Use(middlewareLogger.LogIncomingReq)
+
+	//Travel List router
+	tlRouter := r.NewRoute().PathPrefix(conf.Service.ApiBasePath + "/lists/update").Subrouter()
+	getTlRouter := tlRouter.Methods(http.MethodGet).Subrouter()
+	getTlRouter.HandleFunc("", tlUpdateHandler.UpdateTravelInfo)
+
+	//CORS
+	corsHandler := gorillaHandlers.CORS(gorillaHandlers.AllowedOrigins([]string{conf.Service.CorsAllowedOrigins}))
+
+	s := &http.Server{
+		Addr:         conf.Service.Url + ":" + conf.Service.Port,
+		Handler:      corsHandler(r),
+		ErrorLog:     l.StandardLogger(&hclog.StandardLoggerOptions{}),
+		IdleTimeout:  conf.Service.IdleTimeout * time.Second,
+		ReadTimeout:  conf.Service.ReadTimeout * time.Second,
+		WriteTimeout: conf.Service.WriteTimeout * time.Second,
+	}
+
 	go func() {
-		l.Info("Starting server instance", "Name", conf.Scraper.ServerName, "URL", conf.Scraper.Url)
-		s := Handler.CreateScraper(conf, l)
-	retry:
-		err := s.RetrieveLists()
+		l.Info("Starting server", "Address", s.Addr)
+		err := s.ListenAndServe()
 		if err != nil {
-			goto retry
+			l.Error("Error starting server", "error", err)
+			os.Exit(1)
 		}
-		ctx := context.Background()
-		ghToken, _ := viper.Get("GITHUB_TOKEN").(string)
-		ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: ghToken})
-		httpClient := oauth2.NewClient(ctx, ts)
-		ghc := Data.NewGitHubConnector(l, httpClient, &conf.Connector.CommitterInfo, &conf.Connector.Repo)
-		ghc.UpdateDB(s.TravelLists)
 	}()
 
 	signChannel := make(chan os.Signal)
