@@ -20,7 +20,7 @@ github:
   committer-info:
     name: Gypsy19
     email: antoniobust@gmail.com 
-    branch: dev
+    branch: master
 
 #Microservice config 
 server:

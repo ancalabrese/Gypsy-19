@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col'
 import Toolbar from './Components/UI/Toolbar/Toolbar'
 import WorldMap from './Components/WorldMap/WorldMap';
 import ControlPanel from './Components/ControlsPanel/ControlPanel';
-import { Card } from 'react-bootstrap';
 
 function App() {
   return (
@@ -14,13 +13,11 @@ function App() {
       <Toolbar />
       <Container fluid className={["align-items-center", "min-vh-100"].join(" ")}>
         <Row className={["align-self-start"].join(" ")}>
-          <Col md={3} className={["align-items-start"].join(" ")}>
+          <Col xs={{ span: 12, order: 2, }} md={{ span: 3, order: 1, }} className={["align-items-start"].join(" ")}>
             <ControlPanel />
           </Col>
-          <Col md={9} className={["align-items-center"].join(" ")}>
-            <Card>
-              <Card.Body><WorldMap /></Card.Body>
-            </Card>
+          <Col xs={{ span: 12, order: 1, }} md={{ span: 9, order: 2 }} className={["align-items-center"].join(" ")}>
+            <WorldMap />
           </Col>
         </Row>
       </Container>

@@ -9,6 +9,10 @@
 /Web/.env
 /Scraper/local.env
 
+#Golang
+/Scraper/bin
+/Scraper/vendor
+
 # testing
 /Web/coverage
 

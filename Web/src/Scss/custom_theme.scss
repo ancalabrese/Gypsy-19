@@ -1,12 +1,14 @@
-
-$primary:           #fffafe;
-$primary-dark:      #ccc7cb;
-$primary-light:     #ffffff;
-$secondary:         #ff9293;
-$secondary-dark:    #c96265;
-$secondary-light:   #ffc4c3;
-$accent:            #3f2f70;
-$body-bg:           #fff;
+$primary:           #78909c;
+$primary-dark:      #4b636e;
+$primary-light:     #a7c0cd;
+$secondary:         #64dd17;
+$secondary-dark:    #1faa00;
+$secondary-light:   #9cff57;
+$text-on-p:         #fff;
+$text-on-s:         #fff;
+$amber-list-color:  #fdd835;
+$green-list-color:  #4caf50;
+$red-list-color:    #f44336;
 
 
 $theme-colors:(
@@ -16,7 +18,13 @@ $theme-colors:(
 "secondary":         $secondary,
 "secondary-dark":    $secondary-dark,
 "secondary-light":   $secondary-light,
-"accent":            $accent
+"text-on-primary":   $text-on-p,
+"text-on-secondary": $text-on-s,
+"body-bg":           $primary-light,
+"amber-list-color":  $amber-list-color,
+"green-list-color":  $green-list-color,
+"red-list-color":    $red-list-color,
 )!default;
+
 
 @import "~bootstrap/scss/bootstrap";

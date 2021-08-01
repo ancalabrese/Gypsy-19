@@ -5,6 +5,7 @@ html {
 }
 
 body {
+  background-color: var(--body-bg);
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -17,15 +18,44 @@ body {
 }
 
 .heading {
-  color: var(--accent) !important;
+  color: var(--secondary) !important;
   font-weight: 800 !important;
 }
 
 .sub-heading {
-  color: var(--accent) !important;
+  color: var(--secondary) !important;
   font-weight: 600 !important;
 }
 
+.primary-element {
+  background-color: var(--primary) !important;
+  color: var(--text---) !important;
+}
+
+.primary-dark-element {
+  background-color: var(--primary-dark) !important;
+  color: var(--text-on-primary) !important;
+}
+
+.primary-light-element {
+  background-color: var(--primary-light) !important;
+  color: var(--text-on-primary) !important;
+}
+
+.secondary-element {
+  background-color: var(--secondary) !important;
+  color: var(--text-on-secondary) !important;
+}
+
+.secondary-dark-element {
+  background-color: var(--secondary-dark) !important;
+  color: var(--text-on-secondary) !important;
+}
+
+.secondary-light-element {
+  background-color: var(--secondary-light) !important;
+  color: var(--text-on-s) !important;
+}
 
 
 @include media-breakpoint-up(sm) {
