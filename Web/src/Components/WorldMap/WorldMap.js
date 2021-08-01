@@ -54,16 +54,18 @@ const WorldMap = (props) => {
         const redColor = getComputedStyle(document.documentElement).getPropertyValue("--red-list-color").slice(1);
         const amberColor = getComputedStyle(document.documentElement).getPropertyValue("--amber-list-color").slice(1);
         const greenColor = getComputedStyle(document.documentElement).getPropertyValue("--green-list-color").slice(1);
+        const mapBackground = getComputedStyle(document.documentElement).getPropertyValue("--primary-dark").slice(1);
+        const strokeColor = getComputedStyle(document.documentElement).getPropertyValue("--primary-light").slice(1);
         var options = {
             colorAxis: {
                 values: [ListMapping[RED], ListMapping[AMBER], ListMapping[GREEN]],
                 colors: [redColor, amberColor, greenColor]
             },
-            backgroundColor: '#4b636e',
+            backgroundColor: mapBackground,
             datalessRegionColor: '#ffff',
             defaultColor: '#f5f5f5',
-            stroke: '#a7c0cd',
-            strokeWidth: 2,
+            stroke: strokeColor,
+            strokeWidth: 5,
             domain: 'UK'
         };
         const map = new window.google.visualization.GeoChart(document.getElementById("map-container"));
