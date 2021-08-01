@@ -9,8 +9,8 @@ const Toolbar = (props) => {
   const [showShadow, displayShadow] = useState(props.fixedShadow);
 
   return (
-    <Navbar className={Style.Toolbar} expand="md" sticky="top">
-      <Navbar.Brand href="#home">GYPSY-19</Navbar.Brand>
+    <Navbar className={[Style.Toolbar, "primary-dark-element"].join(" ")} expand="md" sticky="top">
+      <Navbar.Brand href="#home" className={["primary-dark-element", "font-weight-bold"].join(" ")}>GYPSY-19</Navbar.Brand>
       {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
       {/* <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">

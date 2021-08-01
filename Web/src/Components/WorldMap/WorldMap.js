@@ -42,7 +42,7 @@ const WorldMap = (props) => {
     const disableMapLegend = () => {
         var legend = document.querySelector("#map-container > div > div:nth-child(1) > div > svg > g > g:nth-child(3)")
         if (legend != null) {
-            legend.style.display = "none"
+            legend.setAttribute("style", "display:none");
         }
     }
 
@@ -66,7 +66,10 @@ const WorldMap = (props) => {
             defaultColor: '#f5f5f5',
             stroke: strokeColor,
             strokeWidth: 5,
-            domain: 'UK'
+            domain: 'UK',
+            tooltip:{
+                trigger:"selection"
+            }
         };
         const map = new window.google.visualization.GeoChart(document.getElementById("map-container"));
         const data = window.google.visualization.arrayToDataTable(mapData);
