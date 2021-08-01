@@ -57,6 +57,20 @@ body {
   color: var(--text-on-s) !important;
 }
 
+.default-card {
+  padding: 0;
+  border-radius: 12px;
+  overflow:hidden;
+}
+
+.card-body > div {
+  padding: 0;
+}
+
+.default-rounded-borders {
+  border-radius: 12px;
+}
+
 
 @include media-breakpoint-up(sm) {
   html {

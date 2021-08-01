@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import CountryListDummy from '../../Data/DummyLists';
 import { Card } from 'react-bootstrap';
-import Style from './WorldMap.module.css'
-import Theme from '../../index.scss'
 
 const WorldMap = (props) => {
     const mapData = [['Country', 'Travel List']]
@@ -78,8 +76,8 @@ const WorldMap = (props) => {
     }
 
     return (
-        <Card className={[Style['card'], "primary-dark-element"].join(" ")}>
-            <Card.Body className={Style['card-body']}>
+        <Card className={["default-card", "primary-dark-element"].join(" ")}>
+            <Card.Body>
                 <div id="map-container" />
             </Card.Body>
         </Card>
