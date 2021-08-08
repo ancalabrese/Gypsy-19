@@ -4,6 +4,8 @@ go 1.16
 
 require (
 	github.com/PuerkitoBio/goquery v1.7.1
+	github.com/dghubble/go-twitter v0.0.0-20210609183100-2fdbf421508e // indirect
+	github.com/dghubble/oauth1 v0.7.0 // indirect
 	github.com/google/go-github/v37 v37.0.1-0.20210710111136-f47f8fe25bca
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0

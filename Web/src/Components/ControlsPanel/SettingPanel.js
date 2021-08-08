@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { InputGroup, FormControl, Form, Button, Card } from 'react-bootstrap';
+import Style from './SettingPanel.module.css'
 
 const SettingPanel = (props) => {
 
