@@ -48,7 +48,7 @@ func (t *Twitter) OnUpdate(newList Country.Lists, oldList Country.Lists) {
 		msg.WriteString(fmt.Sprintf("\n+%d countries moved to Green list", diff))
 	}
 
-	msg.WriteString(fmt.Sprintf("Checkout the Covid Travel Restriction Tracker -> \"https://github.com/ancalabrese/COVID-Travel-Restriction-Tracker\""))
+	msg.WriteString(fmt.Sprintf("Check out the Covid Travel Restriction Tracker -> \"https://github.com/ancalabrese/COVID-Travel-Restriction-Tracker\""))
 	msg.WriteString(strings.Join(tags, " "))
 	if err := t.postUdpate(msg.String()); err != nil {
 		t.logger.Error("Couldn't post tweet", "error", err)
