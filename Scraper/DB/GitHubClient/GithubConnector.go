@@ -26,7 +26,7 @@ type Repo struct {
 	Name       string `yaml:"name"`
 	Owner      string `yaml:"owner"`
 	BaseBranch string `yaml:"base-branch"`
-	filePath   string `yaml:"db-file-path"`
+	FilePath   string `yaml:"db-file-path"`
 }
 
 type CommitInfo struct {
@@ -121,16 +121,23 @@ func (ghc *GitHubConnector) downloadContent(filePath string) (*Country.Lists, er
 
 func (ghc *GitHubConnector) updateLists(data Country.Lists, tree *github.Tree) error {
 	var sb strings.Builder
+	var SHA string
+	for i := range tree.Entries {
+		if tree.Entries[i].GetPath() == ghc.repo.FilePath {
+			SHA = tree.Entries[i].GetSHA()
+			break
+		}
+	}
 	Data.ToPrettyJson(data, &sb)
 	fileOptions := &github.RepositoryContentFileOptions{
 		Message:   &ghc.commitInfo.commitMessage,
 		Content:   []byte(sb.String()),
-		SHA:       tree.Entries[0].SHA,
+		SHA:       &SHA,
 		Branch:    &ghc.commitInfo.CommitingBranch,
 		Author:    &github.CommitAuthor{Name: &ghc.commitInfo.ClientName, Email: &ghc.commitInfo.ClientEmail},
 		Committer: &github.CommitAuthor{Name: &ghc.commitInfo.ClientName, Email: &ghc.commitInfo.ClientEmail},
 	}
-	r, s, err := ghc.client.Repositories.UpdateFile(ghc.ctx, ghc.repo.Owner, ghc.repo.Name, *tree.Entries[0].Path, fileOptions)
+	r, s, err := ghc.client.Repositories.UpdateFile(ghc.ctx, ghc.repo.Owner, ghc.repo.Name, ghc.repo.FilePath, fileOptions)
 	if err != nil {
 		ghc.logger.Error("Unable to update file", "FilePath", tree.Entries[0].GetPath(), "Repo", ghc.repo.Name, "Error", err, r, s)
 		return err

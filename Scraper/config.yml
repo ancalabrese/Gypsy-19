@@ -16,7 +16,7 @@ github:
     name: COVID-Travel-Restriction-Tracker
     owner: ancalabrese 
     base-branch: master
-    db-file-path: DataBank.json
+    db-file-path: TravelLists.json
   committer-info:
     name: Gypsy19
     email: antoniobust@gmail.com 
